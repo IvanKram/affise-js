@@ -1,0 +1,61 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb-base", "airbnb-typescript/base", "prettier", "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"],
+  "plugins": ["@typescript-eslint","prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "project": "./tsconfig.json",
+    "requireConfigFile": false
+  },
+  "rules": {
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    // windows linebreaks when not in production environment
+    "linebreak-style": ["error", "unix"],
+    // "eol-last": ["error", "windows"],
+    "prettier/prettier": ["warn"],
+    "import/newline-after-import": "off",
+    "import/extensions": ["error", { "js": "ignorePackages" }],
+    "no-console": "off",
+    "no-continue": "off",
+    "class-methods-use-this": "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-use-before-define": ["error", { "functions": false }],
+    "no-shadow": "off",
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "radix": "off",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "new-cap": ["error", { "properties": false, "capIsNew": false }],
+    "max-classes-per-file": "off",
+    "eqeqeq": "off",
+    "prefer-arrow-callback": "off",
+    "prefer-destructuring": ["warn"],
+    "no-await-in-loop": ["warn"],
+    "func-names": ["warn", "never"],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "arrow-body-style": "off"
+  },
+  "overrides": [
+    {
+      "files": ["database/migrations/*.js"],
+      "rules": {
+        "no-unused-vars": "off"
+      }
+    },
+    {
+      "files": ["test/**/*.js"],
+      "rules": {
+        "func-names": ["error", "never"],
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
+}
