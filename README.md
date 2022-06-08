@@ -29,6 +29,31 @@ Other things to include:
 
 ## Usage
 
+- [ApiRunner](src/apiRunner.ts) Example: 
+
+```
+import {ApiRunner, ConversionStatus} from "affise-js";
+
+const runner = new ApiRunner("https://api.affise.com/3.0/", "YOUR_API_KEY");
+
+await runner.importConversion({
+    click_id: 0,
+    offer: 0,
+    pid: 1,
+    status: ConversionStatus.CONFIRMED,
+    goal: 1
+})
+
+await runner.editConversions([2, 3, 4], {
+    status: ConversionStatus.DECLINED,
+    currency: "USD",
+    payouts: 1,
+    revenue: 1,
+    comment: "comment"
+})
+```
+
+
 ## Known issues
 
 
