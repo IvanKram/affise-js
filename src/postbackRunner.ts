@@ -25,16 +25,20 @@ export class PostbackRunner {
         this.apiKey = apiKey;
     }
 
-    private async send(path: string, params: URLSearchParams) {
-        return axios.post(this.postbackUrl + path, params, {
-            headers: {
-                apiKey: this.apiKey,
-            },
+    public async sendPostback(postback: Postback) {
+        const url = new URL(this.postbackUrl);
+
+        Object.keys(postback).forEach((key) => {
+            if (
+                (postback as Record<string, any>)[key] === null ||
+                (postback as Record<string, any>)[key] === undefined
+            ) {
+                return;
+            }
+
+            url.searchParams.append(key, (postback as Record<string, any>)[key].toString());
         });
-    }
 
-    public sendPostback(postback: Postback) {
-
-
+        await axios.get(url.href);
     }
 }

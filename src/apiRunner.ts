@@ -70,7 +70,7 @@ export class ApiRunner {
         const keys = Object.keys(conversion);
 
         keys.forEach((key) => {
-            params.append(key, (conversion as Record<any, any>)[key].toString());
+            params.append(key, (conversion as Record<string, any>)[key].toString());
         });
 
         await this.send(path, params);
